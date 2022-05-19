@@ -21,4 +21,30 @@
           <required>true</required>
       </attribute>
   </tag>
+  
+  <tag>
+      <name>
+          loadOne
+      </name>
+      <tag-class>br.devCaotics.TagHanddlers.LoadOneRepository</tag-class>
+      <body-content>empty</body-content>
+      
+      <attribute>
+          <name>var</name>
+          <type>String</type>
+          <required>true</required>
+      </attribute>
+      
+      <attribute>
+          <name>className</name>
+          <type>String</type>
+          <required>true</required>
+      </attribute>
+      
+      <attribute>
+          <name>id</name>
+          <type>String</type>
+          <required>true</required>
+      </attribute>
+  </tag>
 </taglib>

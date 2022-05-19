@@ -29,12 +29,11 @@ public class LoadListRepository extends SimpleTagSupport{
     @Override
     public void doTag() throws JspException, IOException {
         super.doTag(); //To change body of generated methods, choose Tools | Templates.
-    
-        br.devCaotics.annotationTrackerEngine.ClassIdentifier.identify();
         
         for(Class c: TaggedAnnotationList.AnnotatedClasses){
             
-            CRUDRepository crudAnnot = (CRUDRepository)c.getAnnotation(CRUDRepository.class);
+            CRUDRepository crudAnnot = (CRUDRepository)
+                    c.getAnnotation(CRUDRepository.class);
             
             if(crudAnnot.tagEntity().equalsIgnoreCase(this.className)){
                 
@@ -48,7 +47,7 @@ public class LoadListRepository extends SimpleTagSupport{
                         try {
                             o = m.invoke(null);
                         } catch(Exception e){
-                            System.out.println("devCaotics info: Problem on creating Repository Instance");
+                            System.out.println("devCaotics info: Problem on creating "+this.className+" Repository Instance");
                             getJspContext().setAttribute(this.var, new ArrayList(), PageContext.PAGE_SCOPE);
                             getJspContext().setAttribute("devCaotics-error", "Problem on creating Repository Instance");
                             return;
@@ -58,7 +57,7 @@ public class LoadListRepository extends SimpleTagSupport{
                 }
                 
                 if(o == null){
-                            System.out.println("devCaotics info: Problem on creating Repository Instance");
+                            System.out.println("devCaotics info: Problem on creating "+this.className+" Repository Instance");
                             getJspContext().setAttribute(this.var, new ArrayList(), PageContext.PAGE_SCOPE);
                             getJspContext().setAttribute("devCaotics-error", "Problem on creating Repository Instance");
                             return;
@@ -70,13 +69,13 @@ public class LoadListRepository extends SimpleTagSupport{
                     
                     if(m.isAnnotationPresent(ReadAllMethod.class)){
                         try {
-                           listAux = (List)m.invoke(o);
+                            listAux = (List)m.invoke(o);
                             
                             getJspContext().setAttribute(this.var, listAux, PageContext.PAGE_SCOPE);
                             return;
                             
                         } catch (Exception ex) {
-                            System.out.println("devCaotics info: Problem on creating Repository Instance");
+                            System.out.println("devCaotics info: Problem on calling readAll method on repository "+this.className);
                             getJspContext().setAttribute(this.var, new ArrayList(), PageContext.PAGE_SCOPE);
                             getJspContext().setAttribute("devCaotics-error", "Problem on creating Repository Instance");
                             return;
@@ -86,7 +85,7 @@ public class LoadListRepository extends SimpleTagSupport{
                 }
                 
                 if(listAux == null){
-                            System.out.println("devCaotics info: Problem on creating Repository Instance");
+                            System.out.println("devCaotics info: There is no readAll method on repository "+this.className);
                             getJspContext().setAttribute(this.var, new ArrayList(), PageContext.PAGE_SCOPE);
                             getJspContext().setAttribute("devCaotics-error", "Problem on creating Repository Instance");
                             return;

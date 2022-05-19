@@ -33,7 +33,8 @@ public class ClassIdentifier {
             
             executed = true;
             
-            String _pathAux = new ClassIdentifier().getClass().getResource("ClassIdentifier.class").getPath().replace("%20", " ");
+            String _pathAux = new ClassIdentifier().getClass()
+                    .getResource("ClassIdentifier.class").getPath().replace("%20", " ");
             
             String _pathAuxDecomp[] = _pathAux.split("/");
             

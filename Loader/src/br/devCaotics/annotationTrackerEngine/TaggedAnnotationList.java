@@ -13,4 +13,8 @@ public class TaggedAnnotationList {
     
     public static Class[] AnnotatedClasses = null;
     
+    
+    static{
+        br.devCaotics.annotationTrackerEngine.ClassIdentifier.identify();
+    }
 }
